@@ -1,32 +1,30 @@
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
-class CheckoutPage:
+class CheckoutPage(BasePage):
 
-    def __init__(self, driver):
-        self.driver = driver
-
-    first_name_input = (
+    FIRST_NAME_INPUT = (
         By.ID,
         "first-name"
     )
 
-    last_name_input = (
+    LAST_NAME_INPUT = (
         By.ID,
         "last-name"
     )
 
-    postal_code_input = (
+    POSTAL_CODE_INPUT = (
         By.ID,
         "postal-code"
     )
 
-    continue_button = (
+    CONTINUE_BUTTON = (
         By.ID,
         "continue"
     )
 
-    cart_item_name = (
+    CART_ITEM_NAME = (
         By.CLASS_NAME,
         "inventory_item_name"
     )
@@ -38,26 +36,15 @@ class CheckoutPage:
         postal_code
     ):
 
-        self.driver.find_element(
-            *self.first_name_input
-        ).send_keys(first_name)
-
-        self.driver.find_element(
-            *self.last_name_input
-        ).send_keys(last_name)
-
-        self.driver.find_element(
-            *self.postal_code_input
-        ).send_keys(postal_code)
+        self.write(self.FIRST_NAME_INPUT, first_name)
+        self.write(self.LAST_NAME_INPUT, last_name)
+        self.write(self.POSTAL_CODE_INPUT, postal_code)
 
     def click_continue(self):
 
-        self.driver.find_element(
-            *self.continue_button
-        ).click()
+        self.click(self.CONTINUE_BUTTON)
 
     def get_first_item_name(self):
 
-        return self.driver.find_element(
-            *self.cart_item_name
-        ).text
+        return self.get_text(
+            *self.CART_ITEM_NAME)

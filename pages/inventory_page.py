@@ -1,66 +1,61 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from pages.base_page import BasePage
 
 
-class InventoryPage:
+class InventoryPage(BasePage):
 
     URL = "https://www.saucedemo.com/inventory.html"
 
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
-    add_backpack_button = (
+    ADD_BACKPACK_BUTTON = (
         By.ID,
         "add-to-cart-sauce-labs-backpack"
     )
 
-    remove_backpack_button = (
+    REMOVE_BACKPACK_BUTTON = (
         By.ID,
         "remove-sauce-labs-backpack"
     )
 
-    cart_icon = (
+    CART_ICON = (
         By.CLASS_NAME,
         "shopping_cart_link"
     )
 
-    cart_badge = (
+    CART_BADGE = (
         By.CLASS_NAME,
         "shopping_cart_badge"
     )
 
-    sort_dropdown = (
+    SORT_DROPDOWN = (
         By.CLASS_NAME,
         "product_sort_container"
     )
 
-    product_prices = (
+    PRODUCT_PRICES = (
         By.CLASS_NAME,
         "inventory_item_price"
     )
 
     def open(self):
-        self.driver.get(self.URL)
+        self.open_url(self.URL)
 
     def add_backpack_to_cart(self):
-        self.driver.find_element(
-            *self.add_backpack_button
-        ).click()
+        self.click(self.ADD_BACKPACK_BUTTON)
 
     def remove_backpack_from_cart(self):
-        self.driver.find_element(
-            *self.remove_backpack_button
-        ).click()
+        self.click(self.REMOVE_BACKPACK_BUTTON)
 
     def go_to_cart(self):
-        self.driver.find_element(
-            *self.cart_icon
-        ).click()
+        self.click(self.CART_ICON)
 
     def get_cart_badge_count(self):
 
         badges = self.driver.find_elements(
-            *self.cart_badge
+            *self.CART_BADGE
         )
 
         if not badges:
@@ -72,7 +67,7 @@ class InventoryPage:
 
         dropdown = Select(
             self.driver.find_element(
-                *self.sort_dropdown
+                *self.SORT_DROPDOWN
             )
         )
 
@@ -81,7 +76,7 @@ class InventoryPage:
     def get_product_prices(self):
 
         price_elements = self.driver.find_elements(
-            *self.product_prices
+            *self.PRODUCT_PRICES
         )
 
         return [

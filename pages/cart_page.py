@@ -1,27 +1,23 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
-class CartPage:
+class CartPage(BasePage):
     
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
         
     cart_item = (By.CLASS_NAME, "inventory_item_name")
     remove_button = (By.ID, "remove-sauce-labs-backpack")
     checkout_button = (By.ID, "checkout")
     
     def get_first_item_name(self):
-        return self.driver.find_element(*self.cart_item).text
+        return self.get_text(self.cart_item)
         
     def click_checkout(self):
-        self.driver.find_element(*self.checkout_button).click()
+        self.click(self.checkout_button)
         
     def remove_backpack_from_cart(self):
-        remove_button = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.remove_button)
-        )
-        remove_button.click()
+        self.click(self.remove_button)
 
     def get_cart_items_count(self):
-        return len(self.driver.find_elements(*self.cart_item))
+        return len(self.driver.find_all(self.CART_ITEM))
