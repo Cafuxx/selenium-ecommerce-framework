@@ -23,5 +23,5 @@ def test_checkout_validation(driver, first_name, last_name, postal_code, error_m
     checkout_page.fill_checkout_form(first_name, last_name, postal_code)
     checkout_page.click_continue()
     
-    assert (checkout_page.get_error_message() == error_message))
+    assert (checkout_page.get_error_message() == error_message)
     
