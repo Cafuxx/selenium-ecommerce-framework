@@ -10,16 +10,6 @@ class InventoryPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    ADD_BACKPACK_BUTTON = (
-        By.ID,
-        "add-to-cart-sauce-labs-backpack"
-    )
-
-    REMOVE_BACKPACK_BUTTON = (
-        By.ID,
-        "remove-sauce-labs-backpack"
-    )
-
     CART_ICON = (
         By.CLASS_NAME,
         "shopping_cart_link"
@@ -43,11 +33,30 @@ class InventoryPage(BasePage):
     def open(self):
         self.open_url(self.URL)
 
-    def add_backpack_to_cart(self):
-        self.click(self.ADD_BACKPACK_BUTTON)
-
-    def remove_backpack_from_cart(self):
-        self.click(self.REMOVE_BACKPACK_BUTTON)
+    def add_product_to_cart(self, product_name):
+        product_id = (
+            product_name.lower()
+            .replace(" ", "-")
+        )
+        
+        add_button = (
+            By.ID,
+            f"add-to-cart-{product_id}"
+        )
+        
+        self.click(add_button)
+    
+    def remove_product_from_cart(self, product_name):
+        product_id = (
+            product_name.lower()
+            .replace(" ", "-")
+        )
+        
+        remove_button = (
+            By.ID,
+            f"remove-{product_id}"
+        )
+        self.click(remove_button)
 
     def go_to_cart(self):
         self.click(self.CART_ICON)

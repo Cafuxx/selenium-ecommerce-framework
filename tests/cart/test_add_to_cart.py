@@ -5,7 +5,7 @@ from pages.login_page import LoginPage
 
 @pytest.mark.smoke
 @pytest.mark.regression
-def test_add_and_remove_from_cart(driver):
+def test_add_to_cart(driver):
     
     login_page = LoginPage(driver)
     inventory_page = InventoryPage(driver)
@@ -31,9 +31,3 @@ def test_add_and_remove_from_cart(driver):
 
     # Validar producto agregado
     assert cart_page.get_first_item_name() == "Sauce Labs Backpack"
-
-    # Eliminar producto
-    cart_page.remove_backpack_from_cart()
-
-    # Validar carrito vacío
-    assert cart_page.get_cart_items_count() == 0

@@ -28,6 +28,11 @@ class CheckoutPage(BasePage):
         By.CLASS_NAME,
         "inventory_item_name"
     )
+    
+    ERROR_MESSAGE = (
+        By.CSS_SELECTOR,
+        "[data-test='error']"
+    )
 
     def fill_checkout_form(
         self,
@@ -43,6 +48,12 @@ class CheckoutPage(BasePage):
     def click_continue(self):
 
         self.click(self.CONTINUE_BUTTON)
+        
+    def get_error_message(self):
+        
+        return self.get_text(
+            self.ERROR_MESSAGE
+        )
 
     def get_first_item_name(self):
 

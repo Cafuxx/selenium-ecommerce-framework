@@ -20,4 +20,15 @@ class CartPage(BasePage):
         self.click(self.remove_button)
 
     def get_cart_items_count(self):
-        return len(self.driver.find_all(self.CART_ITEM))
+        items = self.find_all(self.cart_item)
+        return [item.text for item in items]
+    
+    def remove_product_from_cart(self, product_name):
+        product_id = (
+            product_name.lower()
+            .replace(" ", "-")
+        )
+        
+        remove_button = (By.ID, f"remove-{product_id}")
+        
+        self.click(remove_button)
