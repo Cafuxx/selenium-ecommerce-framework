@@ -35,7 +35,8 @@ class InventoryPage(BasePage):
 
     def add_product_to_cart(self, product_name):
         product_id = (
-            product_name.lower()
+            product_name
+            .lower()
             .replace(" ", "-")
         )
         
@@ -48,7 +49,8 @@ class InventoryPage(BasePage):
     
     def remove_product_from_cart(self, product_name):
         product_id = (
-            product_name.lower()
+            product_name
+            .lower()
             .replace(" ", "-")
         )
         

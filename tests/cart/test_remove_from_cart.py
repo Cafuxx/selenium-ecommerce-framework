@@ -24,7 +24,7 @@ def test_remove_from_cart(driver):
 
     # Agregar producto
     inventory_page.open()
-    inventory_page.add_backpack_to_cart()
+    inventory_page.add_product_to_cart("Sauce Labs Backpack")
 
     # Ir al carrito
     inventory_page.go_to_cart()
