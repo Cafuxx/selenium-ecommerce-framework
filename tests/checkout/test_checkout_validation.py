@@ -17,7 +17,9 @@ def test_checkout_validation(driver, first_name, last_name, postal_code, error_m
     checkout_page = CheckoutPage(driver)
     
     inventory_page.open()
-    inventory_page.add_product_to_cart()
+    inventory_page.add_product_to_cart(
+        "Sauce Labs Backpack"
+    )
     inventory_page.go_to_cart()
     cart_page.click_checkout()
     checkout_page.fill_checkout_form(first_name, last_name, postal_code)
