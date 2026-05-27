@@ -18,7 +18,9 @@ def test_cart_validation(driver):
     )
 
     # Agregar producto
-    inventory_page.add_backpack_to_cart()
+    inventory_page.add_product_to_cart(
+        "Sauce Labs Backpack"
+    )
 
     # Ir al carrito
     inventory_page.go_to_cart()

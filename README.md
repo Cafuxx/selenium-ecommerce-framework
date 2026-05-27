@@ -1,88 +1,89 @@
-# Selenium Python Tests
+# Selenium Ecommerce Framework
 
-![Tests](https://github.com/Cafuxx/selenium-python-tests/actions/workflows/selenium.yml/badge.svg)
+![Tests](https://github.com/Cafuxx/https://github.com/Cafuxx/selenium-ecommerce-framework.git/actions/workflows/selenium.yml/badge.svg)
 
-Proyecto de automatización QA desarrollado con Selenium, Pytest y Python utilizando buenas prácticas de testing automation y CI/CD.
+Proyecto personal de automatización QA usando Selenium, Pytest y Python.  
+El objetivo principal de este framework fue practicar automatización E2E aplicando buenas prácticas reales de testing y estructura de proyectos.
+
+La aplicación utilizada para las pruebas es:
+
+https://www.saucedemo.com/
 
 ---
 
-## Tecnologías utilizadas
+## Stack utilizado
 
 - Python
 - Selenium WebDriver
 - Pytest
-- ChromeDriver
+- Pytest HTML
+- Allure Reports
 - WebDriver Manager
-- Pytest HTML Reports
 - GitHub Actions
 
 ---
 
-## Objetivo
+## Qué incluye el proyecto
 
-Practicar automatización de pruebas E2E (End-to-End) sobre la plataforma:
-
-https://www.saucedemo.com/
-
-Aplicando:
-
-- Page Object Model (POM)
-- Fixtures con Pytest
-- Parametrize
-- Markers (Smoke / Regression)
-- Selenium Headless
-- Continuous Integration (CI/CD)
+- Arquitectura Page Object Model (POM)
+- BasePage reutilizable
+- Tests organizados por módulos
+- Parametrización con Pytest
+- Markers (`smoke` y `regression`)
+- Negative testing
+- Reportes HTML
+- Allure Reports
+- Screenshots automáticos en fallos
+- CI/CD con GitHub Actions
 
 ---
 
-## Arquitectura del proyecto
+## Estructura del proyecto
 
 ```plaintext
-.
-├── .github/workflows/
-│   └── selenium.yml
+selenium-ecommerce-framework/
+│
 ├── pages/
-│   ├── login_page.py
-│   ├── inventory_page.py
-│   ├── cart_page.py
-│   └── checkout_page.py
 ├── tests/
-│   ├── login_test.py
-│   ├── checkout_test.py
-│   ├── cart_validation_test.py
-│   ├── add_and_remove_from_cart_test.py
-│   └── order_products_by_price_test.py
+│   ├── login/
+│   ├── cart/
+│   ├── checkout/
+│   └── inventory/
+│
+├── utils/
+├── screenshots/
+├── .github/workflows/
 ├── conftest.py
 ├── pytest.ini
-├── requirements.txt
-└── README.md
+└── requirements.txt
 ```
 
 ---
 
-## Tests implementados
+## Casos de prueba implementados
 
-- Login validation
-- Add product to cart
-- Remove product from cart
-- Checkout flow
-- Cart validation
-- Product sorting validation
+### Login
+- Login válido
+- Password incorrecta
+- Usuario vacío
+- Password vacía
+- Usuario bloqueado
 
----
+### Cart
+- Agregar producto al carrito
+- Eliminar producto
+- Validación del carrito
+- Agregar múltiples productos
+- Eliminar todos los productos
 
-## Features implementadas
+### Checkout
+- Checkout exitoso
+- Validaciones de campos obligatorios
+- Mensajes de error
 
-- Page Object Model (POM)
-- Reusable page classes
-- Pytest fixtures
-- Headless browser execution
-- Parametrized tests
-- Smoke & Regression markers
-- Explicit waits
-- HTML reports
-- GitHub Actions CI pipeline
-- Automatic test execution on push/pull request
+### Inventory
+- Ordenar productos por precio
+- Ordenar productos alfabéticamente
 
 ---
 
@@ -91,13 +92,7 @@ Aplicando:
 Clonar repositorio:
 
 ```bash
-git clone https://github.com/Cafuxx/selenium-python-tests.git
-```
-
-Entrar al proyecto:
-
-```bash
-cd selenium-python-tests
+git clone https://github.com/TU_USER/TU_REPO.git
 ```
 
 Instalar dependencias:
@@ -113,7 +108,7 @@ pip install -r requirements.txt
 Ejecutar toda la suite:
 
 ```bash
-pytest tests/ -v --tb=short
+pytest -v
 ```
 
 Ejecutar smoke tests:
@@ -135,53 +130,58 @@ pytest -m regression
 Generar reporte HTML:
 
 ```bash
-pytest tests/ --html=report.html --self-contained-html
-```
-
-El reporte incluye:
-
-- Tests pasados/fallados
-- Duración de ejecución
-- Detalles de errores
-- Información de entorno
-
----
-
-## CI/CD con GitHub Actions
-
-El proyecto utiliza GitHub Actions para ejecutar automáticamente los tests en cada:
-
-- Push
-- Pull Request
-
-Workflow ubicado en:
-
-```plaintext
-.github/workflows/selenium.yml
+pytest --html=report.html --self-contained-html
 ```
 
 ---
 
-## Aprendizajes
+## Allure Reports
 
-Este proyecto fue realizado para practicar:
+Generar resultados:
 
-- Selenium WebDriver
+```bash
+pytest --alluredir=allure-results
+```
+
+Abrir reporte:
+
+```bash
+allure serve allure-results
+```
+
+---
+
+## CI/CD
+
+El proyecto utiliza GitHub Actions para ejecutar automáticamente la suite de tests en cada push y pull request.
+
+---
+
+## Algunas cosas que practiqué con este proyecto
+
 - Automatización E2E
+- Selenium WebDriver
 - Diseño Page Object Model
-- Fixtures y parametrización con Pytest
 - Explicit waits
-- Testing headless
-- CI/CD pipelines
-- GitHub Actions
-- Reportes HTML automatizados
-- Organización profesional de frameworks QA
+- Data-driven testing
+- Negative testing
+- Organización de frameworks QA
+- Reportes automáticos
+- Integración continua con GitHub Actions
+- Uso de Git y GitHub en proyectos reales
 
 ---
 
-## Estado del proyecto
+## Screenshots
 
-✅ Tests automatizados funcionando  
-✅ CI/CD activo con GitHub Actions  
-✅ HTML reports generados automáticamente  
-✅ Framework estructurado con POM
+### GitHub Actions
+
+_Agregar screenshot acá_
+
+### HTML Report
+
+_Agregar screenshot acá_
+
+### Allure Report
+
+_Agregar screenshot acá_

@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from pages.login_page import LoginPage
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item,call):
@@ -12,6 +13,13 @@ def pytest_runtest_makereport(item,call):
         driver = item.funcargs.get("driver")
         if driver:
             driver.save_screenshot(f"screenshots/{item.name}.png")
+            
+@pytest.fixture
+def logged_in_driver(driver):
+    login_page = LoginPage(driver)
+    login_page.open()
+    login_page.login("standard_user", "secret_sauce")
+    return driver
 
 
 @pytest.fixture(scope="function")
