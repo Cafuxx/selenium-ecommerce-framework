@@ -1,40 +1,40 @@
 # Selenium Ecommerce Framework
 
-![Tests](https://github.com/Cafuxx/https://github.com/Cafuxx/selenium-ecommerce-framework.git/actions/workflows/selenium.yml/badge.svg)
+[![Tests](https://github.com/Cafuxx/selenium-ecommerce-framework/actions/workflows/selenium.yml/badge.svg)](https://github.com/Cafuxx/selenium-ecommerce-framework/actions)
 
-Proyecto personal de automatización QA usando Selenium, Pytest y Python.  
-El objetivo principal de este framework fue practicar automatización E2E aplicando buenas prácticas reales de testing y estructura de proyectos.
+Framework de automatización QA desarrollado con Python, Selenium y Pytest utilizando SauceDemo como aplicación de práctica.
 
-La aplicación utilizada para las pruebas es:
+Comencé este proyecto para aprender automatización de pruebas web desde cero y, a medida que avanzaba, fui incorporando conceptos utilizados en proyectos reales como Page Object Model, parametrización de pruebas, reportes automáticos y ejecución continua mediante GitHub Actions.
+
+Aplicación utilizada para las pruebas:
 
 https://www.saucedemo.com/
 
 ---
 
-## Stack utilizado
+## Tecnologías utilizadas
 
-- Python
-- Selenium WebDriver
-- Pytest
-- Pytest HTML
-- Allure Reports
-- WebDriver Manager
-- GitHub Actions
+* Python
+* Selenium WebDriver
+* Pytest
+* Pytest HTML
+* WebDriver Manager
+* GitHub Actions
 
 ---
 
-## Qué incluye el proyecto
+## Funcionalidades implementadas
 
-- Arquitectura Page Object Model (POM)
-- BasePage reutilizable
-- Tests organizados por módulos
-- Parametrización con Pytest
-- Markers (`smoke` y `regression`)
-- Negative testing
-- Reportes HTML
-- Allure Reports
-- Screenshots automáticos en fallos
-- CI/CD con GitHub Actions
+* Arquitectura Page Object Model (POM)
+* Clase BasePage reutilizable
+* Organización de tests por módulos
+* Parametrización con Pytest
+* Markers (`smoke` y `regression`)
+* Casos positivos y negativos
+* Reportes HTML
+* Screenshots automáticos en fallos
+* Integración continua con GitHub Actions
+* Ejecución headless para CI/CD
 
 ---
 
@@ -43,7 +43,23 @@ https://www.saucedemo.com/
 ```plaintext
 selenium-ecommerce-framework/
 │
+├── .github/
+│   └── workflows/
+│       └── selenium.yml
+│
+├── assets/
+│   ├── github-actions.png
+│   └── report.html
+│
 ├── pages/
+│   ├── base_page.py
+│   ├── login_page.py
+│   ├── inventory_page.py
+│   ├── cart_page.py
+│   └── checkout_page.py
+│
+├── reports/
+│
 ├── tests/
 │   ├── login/
 │   ├── cart/
@@ -51,48 +67,53 @@ selenium-ecommerce-framework/
 │   └── inventory/
 │
 ├── utils/
-├── screenshots/
-├── .github/workflows/
+│
 ├── conftest.py
 ├── pytest.ini
-└── requirements.txt
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## Casos de prueba implementados
+## Casos de prueba automatizados
 
 ### Login
-- Login válido
-- Password incorrecta
-- Usuario vacío
-- Password vacía
-- Usuario bloqueado
+
+* Login exitoso
+* Usuario bloqueado
+* Contraseña incorrecta
+* Usuario vacío
+* Contraseña vacía
 
 ### Cart
-- Agregar producto al carrito
-- Eliminar producto
-- Validación del carrito
-- Agregar múltiples productos
-- Eliminar todos los productos
+
+* Agregar producto al carrito
+* Eliminar producto del carrito
+* Validación de productos agregados
+* Agregar múltiples productos
+* Vaciar carrito completo
 
 ### Checkout
-- Checkout exitoso
-- Validaciones de campos obligatorios
-- Mensajes de error
+
+* Checkout exitoso
+* Validación de campos obligatorios
+* Mensajes de error para datos incompletos
 
 ### Inventory
-- Ordenar productos por precio
-- Ordenar productos alfabéticamente
+
+* Ordenar productos por precio (menor a mayor)
+* Verificación de ordenamiento de productos
 
 ---
 
 ## Instalación
 
-Clonar repositorio:
+Clonar el repositorio:
 
 ```bash
-git clone https://github.com/TU_USER/TU_REPO.git
+git clone https://github.com/Cafuxx/selenium-ecommerce-framework.git
 ```
 
 Instalar dependencias:
@@ -103,7 +124,7 @@ pip install -r requirements.txt
 
 ---
 
-## Ejecutar tests
+## Ejecución de pruebas
 
 Ejecutar toda la suite:
 
@@ -111,16 +132,22 @@ Ejecutar toda la suite:
 pytest -v
 ```
 
-Ejecutar smoke tests:
+Ejecutar únicamente smoke tests:
 
 ```bash
 pytest -m smoke
 ```
 
-Ejecutar regression tests:
+Ejecutar únicamente regression tests:
 
 ```bash
 pytest -m regression
+```
+
+Ejecutar con salida resumida:
+
+```bash
+pytest -v --tb=short
 ```
 
 ---
@@ -133,55 +160,55 @@ Generar reporte HTML:
 pytest --html=report.html --self-contained-html
 ```
 
----
+El reporte incluye:
 
-## Allure Reports
-
-Generar resultados:
-
-```bash
-pytest --alluredir=allure-results
-```
-
-Abrir reporte:
-
-```bash
-allure serve allure-results
-```
+* Tests ejecutados
+* Tests aprobados y fallidos
+* Tiempo de ejecución
+* Detalle de errores
 
 ---
 
-## CI/CD
+## Integración continua
 
-El proyecto utiliza GitHub Actions para ejecutar automáticamente la suite de tests en cada push y pull request.
+El proyecto utiliza GitHub Actions para ejecutar automáticamente la suite de pruebas en cada push realizado a la rama principal.
 
----
-
-## Algunas cosas que practiqué con este proyecto
-
-- Automatización E2E
-- Selenium WebDriver
-- Diseño Page Object Model
-- Explicit waits
-- Data-driven testing
-- Negative testing
-- Organización de frameworks QA
-- Reportes automáticos
-- Integración continua con GitHub Actions
-- Uso de Git y GitHub en proyectos reales
+Esto permite validar que los cambios no rompan funcionalidades existentes y mantener una ejecución consistente tanto en entorno local como en CI.
 
 ---
 
-## Screenshots
+## Capturas
 
 ### GitHub Actions
 
-_Agregar screenshot acá_
 
-### HTML Report
 
-_Agregar screenshot acá_
+### Reporte HTML
 
-### Allure Report
 
-_Agregar screenshot acá_
+
+---
+
+## Aprendizajes obtenidos
+
+Durante el desarrollo de este proyecto practiqué:
+
+* Automatización E2E con Selenium
+* Diseño y mantenimiento de Page Objects
+* Uso de explicit waits
+* Parametrización de pruebas
+* Negative testing
+* Organización de frameworks de automatización
+* Integración continua con GitHub Actions
+* Generación de reportes automáticos
+* Uso de Git y GitHub para control de versiones
+
+---
+
+## Próximos pasos
+
+* Ampliar cobertura de escenarios negativos
+* Incorporar más validaciones de checkout
+* Agregar pruebas de filtros y ordenamientos adicionales
+* Mejorar la reutilización de datos de prueba
+* Incrementar la cobertura funcional del flujo de compra
