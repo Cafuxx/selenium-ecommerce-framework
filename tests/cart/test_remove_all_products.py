@@ -24,7 +24,6 @@ def test_remove_all_products_from_cart(driver):
         
     inventory_page.go_to_cart()
     
-    for product in PRODUCTS:
-        cart_page.remove_product_from_cart(product)
+    cart_page.remove_all_products()
     
     assert cart_page.get_cart_items_count() == 0

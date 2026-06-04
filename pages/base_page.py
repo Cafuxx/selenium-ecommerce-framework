@@ -20,10 +20,13 @@ class BasePage:
         return self.driver.find_elements(*locator)
     
     def click(self, locator):
-        self.wait.until(EC.element_to_be_clickable(locator)).click()
+        element = self.wait.until(EC.element_to_be_clickable(locator))
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        element.click()
         
     def write(self, locator, text):
         element = self.find(locator)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
         element.clear()
         element.send_keys(text)
         
