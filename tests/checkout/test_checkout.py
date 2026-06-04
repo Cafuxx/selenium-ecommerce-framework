@@ -34,21 +34,21 @@ def test_checkout(
         "secret_sauce"
     )
 
-    # Abrir inventario
+    # Open inventory page
     inventory_page.open()
 
-    # Agregar producto
+    # Add product
     inventory_page.add_product_to_cart(
         "Sauce Labs Backpack"
     )
 
-    # Ir al carrito
+    # Go to cart
     inventory_page.go_to_cart()
 
-    # Ir al checkout
+    # Go to checkout
     cart_page.click_checkout()
 
-    # Completar formulario
+    # Fill out form
     checkout_page.fill_checkout_form(
         first_name,
         last_name,

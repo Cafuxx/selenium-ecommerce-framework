@@ -17,16 +17,16 @@ def test_cart_validation(driver):
         "secret_sauce"
     )
 
-    # Abrir página de inventario
+    # Open inventory page
     inventory_page.open()
 
-    # Agregar producto
+    # Add product
     inventory_page.add_product_to_cart(
         "Sauce Labs Backpack"
     )
 
-    # Ir al carrito
+    # Go to cart
     inventory_page.go_to_cart()
 
-    # Validar producto
+    # Validate product
     assert cart_page.get_first_item_name() == "Sauce Labs Backpack"

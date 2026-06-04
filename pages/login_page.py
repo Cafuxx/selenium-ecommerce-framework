@@ -9,6 +9,8 @@ class LoginPage(BasePage):
     PASSWORD_INPUT = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "login-button")
     ERROR_MSG = (By.CSS_SELECTOR, "[data-test='error']")
+    MENU_BUTTON = (By.ID, "react-burger-menu-btn")
+    LOGOUT_LINK = (By.ID, "logout_sidebar_link")
         
     def open(self):
         self.open_url(self.URL)
@@ -20,3 +22,10 @@ class LoginPage(BasePage):
             
     def get_error_message(self):
         return self.get_text(self.ERROR_MSG)
+    
+    def logout(self):
+        try:
+            self.click(self.MENU_BUTTON)
+            self.click(self.LOGOUT_LINK)
+        except:
+            pass 

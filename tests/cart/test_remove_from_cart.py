@@ -22,18 +22,18 @@ def test_remove_from_cart(driver):
     inventory_page = InventoryPage(driver)
     cart_page = CartPage(driver)
 
-    # Agregar producto
+    # Add product
     inventory_page.open()
     inventory_page.add_product_to_cart("Sauce Labs Backpack")
 
-    # Ir al carrito
+    # Go to cart
     inventory_page.go_to_cart()
 
-    # Validar producto agregado
+    # Validate product added
     assert cart_page.get_first_item_name() == "Sauce Labs Backpack"
-    
-    # Eliminar producto
+
+    # Remove product
     cart_page.remove_backpack_from_cart()
-    
-    # Validar carrito vacio
+
+    # Validate empty cart
     assert cart_page.get_cart_items_count() == 0

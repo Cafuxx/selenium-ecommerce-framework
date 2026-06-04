@@ -22,14 +22,14 @@ def test_add_to_cart(driver):
     inventory_page = InventoryPage(driver)
     cart_page = CartPage(driver)
 
-    # Agregar producto
+    # Add product
     inventory_page.open()
     inventory_page.add_product_to_cart(
         "Sauce Labs Backpack"
     )
 
-    # Ir al carrito
+    # Go to cart
     inventory_page.go_to_cart()
 
-    # Validar producto agregado
+    # Validate product added
     assert cart_page.get_first_item_name() == "Sauce Labs Backpack"

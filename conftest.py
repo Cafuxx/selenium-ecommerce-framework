@@ -23,7 +23,7 @@ def logged_in_driver(driver):
 
 
 def _clear_browser_storage(driver):
-    """Helper to clear all browser storage"""
+    # Helper to clear all browser storage
     try:
         driver.execute_script("window.localStorage.clear();")
         driver.execute_script("window.sessionStorage.clear();")
@@ -31,18 +31,29 @@ def _clear_browser_storage(driver):
     except:
         pass
 
-
 @pytest.fixture(scope="function", autouse=True)
-def cleanup_after_test(driver):
-    """Cleanup before and after each test to ensure cart is empty"""
-    # Before test
-    _clear_browser_storage(driver)
+def cleanup_after_test(driver, request):
+    # Cleanup before and after each test to reset cart
+    # Before test - navigate to login page and clear cookies
+    driver.get("https://www.saucedemo.com/")
+    driver.delete_all_cookies()
     
     yield
     
-    # After test execution, clear local storage and cookies to reset cart
-    _clear_browser_storage(driver)
-
+    # After test - logout and clear storage
+    try:
+        login_page = LoginPage(driver)
+        if login_page.is_element_present(login_page.MENU_BUTTON):
+            login_page.logout()
+    except:
+        pass
+    
+    try:
+        driver.execute_script("window.localStorage.clear();")
+        driver.execute_script("window.sessionStorage.clear();")
+        driver.delete_all_cookies()
+    except:
+        pass
 
 @pytest.fixture(scope="function")
 def driver():
