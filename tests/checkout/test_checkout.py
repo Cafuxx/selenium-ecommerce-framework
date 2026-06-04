@@ -34,6 +34,9 @@ def test_checkout(
         "secret_sauce"
     )
 
+    # Abrir inventario
+    inventory_page.open()
+
     # Agregar producto
     inventory_page.add_product_to_cart(
         "Sauce Labs Backpack"
@@ -53,6 +56,5 @@ def test_checkout(
     )
 
     checkout_page.click_continue()
-
-    # Validar navegación
+    
     assert "checkout-step-two" in driver.current_url

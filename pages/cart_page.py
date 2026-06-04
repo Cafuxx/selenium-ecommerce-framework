@@ -20,8 +20,7 @@ class CartPage(BasePage):
         self.click(self.remove_button)
 
     def get_cart_items_count(self):
-        items = self.find_all(self.cart_item)
-        return [item.text for item in items]
+        return len(self.find_all(self.cart_item))
     
     def remove_product_from_cart(self, product_name):
         product_id = (

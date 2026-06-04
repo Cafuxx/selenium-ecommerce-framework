@@ -14,6 +14,7 @@ def test_order_products_by_price(driver):
         "secret_sauce"
     )
 
+    inventory_page.open()
     inventory_page.sort_products_by_price_low_to_high()
 
     prices = inventory_page.get_product_prices()

@@ -17,6 +17,9 @@ def test_cart_validation(driver):
         "secret_sauce"
     )
 
+    # Abrir página de inventario
+    inventory_page.open()
+
     # Agregar producto
     inventory_page.add_product_to_cart(
         "Sauce Labs Backpack"

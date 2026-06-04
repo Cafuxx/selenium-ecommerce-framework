@@ -58,4 +58,4 @@ class CheckoutPage(BasePage):
     def get_first_item_name(self):
 
         return self.get_text(
-            *self.CART_ITEM_NAME)
+            self.CART_ITEM_NAME)
