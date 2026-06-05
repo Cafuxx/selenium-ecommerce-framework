@@ -17,12 +17,17 @@ def pytest_runtest_makereport(item,call):
 @pytest.fixture(scope="function")
 def driver():
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
-    options.add_argument("--window-size=1920, 1080")
+    options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-crash-reporter")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-plugins")
+    options.add_argument("--disable-default-apps")
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install(), options=options))
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     
     driver.get("https://www.saucedemo.com/")
     driver.delete_all_cookies()
